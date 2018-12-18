@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "lerna": "2.7.1",
+  "useWorkspaces": true,
+  "version": "independent"
+}
