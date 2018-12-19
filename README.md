@@ -2,6 +2,10 @@
 
 ## Development
 
+* Core(Library)
+    * Server(Application)
+    * Desktop(Application)
+
 ```
 lerna bootstrap
 ```
