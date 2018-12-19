@@ -1,1 +1,7 @@
 # PushServer
+
+## Development
+
+```
+lerna bootstrap
+```
