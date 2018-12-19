@@ -12,7 +12,9 @@
   "author": "muukii <muukii.muukii@gmail.com> (http://www.muukii.me/)",
   "license": "MIT",
   "dependencies": {
-    "apn": "^2.2.0"
+    "@types/signale": "^1.2.0",
+    "apn": "^2.2.0",
+    "signale": "^1.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
