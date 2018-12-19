@@ -8,9 +8,14 @@ module.exports = {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js'
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
+  },
   module: {
-    rules: [
-      { test: /\.js$|\.ts$/, exclude: /node_modules/, loader: "babel-loader" }
-    ]
+    rules: [{
+      test: /\.js$|\.ts$/,
+      exclude: /node_modules/,
+      loader: "babel-loader"
+    }]
   }
 }

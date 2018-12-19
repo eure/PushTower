@@ -1,10 +1,12 @@
-import * as Express from 'express'
+import Express from 'express'
 import * as bodyParser from 'body-parser'
 import * as log from 'signale'
 
 import * as Core from '@pushservicejs/core'
 
-console.log('⚾️', Core.send)
+const port = 9000
+
+console.log('⚾️', Core, require('@pushservicejs/core'))
 
 const app = Express()
 
@@ -43,7 +45,7 @@ function launch() {
     res.send('hello world')
   })
 
-  app.post('/send', (req, res) => {
+  app.post('/send', async (req, res) => {
     log.debug(req.body)
 
     if (!req.header) {
@@ -66,16 +68,15 @@ function launch() {
       keyID: __keyID,
       teamID: __teamID,
       deviceToken: deviceToken,
-      isProduction: false,
+      isProduction: __isProduction,
       payload: payload,
       topic: topic,
     }
 
-    Core.send(descriptor)
-    res.send({ success: true })
+    const result = await Core.send(descriptor)
+    res.send({ result: result })
   })
 
-  const port = 8000
   app.listen(port, '0.0.0.0', () =>
     console.log(`Example app listening on port ${port}!`),
   )
