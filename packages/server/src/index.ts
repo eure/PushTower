@@ -4,9 +4,9 @@ import * as log from 'signale'
 
 import * as Core from '@pushservicejs/core'
 
-const app = Express()
+console.log('⚾️', Core.send)
 
-bodyParser
+const app = Express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 const __p8FilePath = process.env.__P8_FILE_PATH
 const __keyID = process.env.__KEY_ID
 const __teamID = process.env.__TEAM_ID
-const __isProduction = process.env.__IS_PRODUCTION
+const __isProduction = process.env.__IS_PRODUCTION === 'true'
 
 function launch() {
   if (!__p8FilePath) {
@@ -43,15 +43,15 @@ function launch() {
     res.send('hello world')
   })
 
-  app.post('/send', async (req, res) => {
-    console.log(req.body, Core)
+  app.post('/send', (req, res) => {
+    log.debug(req.body)
 
     if (!req.header) {
       return
     }
 
     const payload = req.body
-    const deviceToken = req.header('x-target-deevice-token')
+    const deviceToken = req.header('x-target-device-token')
     const topic = req.header('x-topic')
 
     if (!deviceToken) {
@@ -71,7 +71,7 @@ function launch() {
       topic: topic,
     }
 
-    await Core.send(descriptor)
+    Core.send(descriptor)
     res.send({ success: true })
   })
 
