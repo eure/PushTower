@@ -1,5 +1,7 @@
 import * as apn from 'apn'
 
+console.log('Load core')
+
 export type Descriptor = {
   deviceToken: string
   payload: string
@@ -9,6 +11,8 @@ export type Descriptor = {
   topic: string
   isProduction: boolean
 }
+
+export function hoge() {}
 
 export async function send(descriptor: Descriptor) {
   const options = {
@@ -33,5 +37,5 @@ export async function send(descriptor: Descriptor) {
   notification.rawPayload = descriptor.payload
   notification.topic = descriptor.topic
 
-  await apnProvider.send(notification, descriptor.deviceToken)
+  return await apnProvider.send(notification, descriptor.deviceToken)
 }

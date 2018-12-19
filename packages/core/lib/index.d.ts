@@ -1,3 +1,4 @@
+import * as apn from 'apn';
 export declare type Descriptor = {
     deviceToken: string;
     payload: string;
@@ -7,4 +8,5 @@ export declare type Descriptor = {
     topic: string;
     isProduction: boolean;
 };
-export declare function send(descriptor: Descriptor): Promise<void>;
+export declare function hoge(): void;
+export declare function send(descriptor: Descriptor): Promise<apn.Responses>;
