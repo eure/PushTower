@@ -42,5 +42,5 @@ curl -X POST \
     "badge" : 0,
     "alert" : "Hello"
   }
-}
+}'
 ```
