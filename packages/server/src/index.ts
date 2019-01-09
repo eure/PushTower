@@ -34,11 +34,6 @@ function launch() {
     process.exit(1)
     return
   }
-  if (!__isProduction) {
-    log.error('__IS_PRODUCTION is required')
-    process.exit(1)
-    return
-  }
 
   // respond with "hello world" when a GET request is made to the homepage
   app.get('/', function(req, res) {
