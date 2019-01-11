@@ -1,8 +1,8 @@
 import Express from 'express'
 import * as bodyParser from 'body-parser'
 import * as log from 'signale'
-
 import * as Core from '@pushservicejs/core'
+import * as TokenStore from '@pushservicejs/tokenstore'
 
 const port = 9000
 
@@ -12,6 +12,7 @@ const app = Express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(TokenStore.tokenStoreMiddleware)
 
 const __p8FilePath = process.env.__P8_FILE_PATH
 const __keyID = process.env.__KEY_ID
