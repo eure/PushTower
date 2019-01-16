@@ -1,32 +1,14 @@
 import * as express from 'express'
-import * as Levelup from 'levelup'
-import * as Leveldown from 'leveldown'
+import * as level from 'level'
 
 export function saveToken(request: express.Request, response: express.Response) {
-
-    // const levelup = Levelup.default
-    // const leveldown = Leveldown.default
 
     console.log(`$$$ ${request.method} ${request.path}`);
 
     const key = request.params['key']
     const deviceToken = request.params['device_token']
 
-    // const db = levelup(leveldown('./mydb'))
-
-
-    // db.put('name', 'levelup', function (err) {
-    //     if (err) return console.log('Ooops!', err) // some kind of I/O error
-      
-    //     // 3) Fetch by key
-    //     db.get('name', function (err, value) {
-    //       if (err) return console.log('Ooops!', err) // likely the key was not found
-      
-    //       // Ta da!
-    //       console.log('name=' + value)
-    //       response.sendStatus(200)
-    //     })
-    // })
+    const db = level('my-db')
     
     response.sendStatus(200)
 
