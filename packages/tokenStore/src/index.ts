@@ -1,5 +1,4 @@
 import * as express from 'express'
-import * as level from 'level'
 
 export function saveToken(request: express.Request, response: express.Response) {
 
@@ -8,7 +7,6 @@ export function saveToken(request: express.Request, response: express.Response) 
     const key = request.params['key']
     const deviceToken = request.params['device_token']
 
-    const db = level('my-db')
     
     response.sendStatus(200)
 
