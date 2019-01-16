@@ -4,18 +4,24 @@ import * as storage from 'node-persist'
 
 export async function setup() {
 
-    await storage.init({dir: '/tmp/mydb.db'})
+    await storage.init({dir: '/tmp/pushserver_tokenstore.db'})
 }
 
 export async function putToken(request: express.Request, response: express.Response) {
 
     console.log(`$$$ ${request.method} ${request.path}`);
 
-    const key = request.params['key']
-    const deviceToken = request.params['device_token']
+    const key = request.body['key']
+    const deviceToken = request.body['device_token']
 
-    await storage.setItem('name','yourname')
-    console.log(await storage.getItem('name')); // yourname
+    console.log("### key: " + key)
+    console.log("### device_token: " + deviceToken)
+
+    if (key && deviceToken) {
+        await storage.setItem(key, deviceToken)
+    }
+
+    // console.log(await storage.getItem(key));
     response.sendStatus(200)
 }
 
