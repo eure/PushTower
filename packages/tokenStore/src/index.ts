@@ -14,3 +14,13 @@ export function tokenStoreMiddleware(request, response, next) {
     console.log(`### ${request.method} ${request.path}`);
     next();
 }
+
+export function hoge(a: string) {
+    console.log(a);
+}
+
+// export function saveToken(request, response, next) {
+
+//     console.log(`### ${request.method} ${request.path}`);
+//     next();
+// }
