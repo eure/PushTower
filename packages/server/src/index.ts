@@ -41,7 +41,7 @@ function launch() {
     res.send('hello world')
   })
 
-  app.post('/device_token', TokenStore.saveToken)
+  app.put('/device_token', TokenStore.saveToken)
   
   app.post('/send', async (req, res) => {
     log.debug(req.body)
