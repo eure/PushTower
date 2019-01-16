@@ -12,7 +12,7 @@ const app = Express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(TokenStore.tokenStoreMiddleware)
+app.use(TokenStore.lookupToken)
 
 const __p8FilePath = process.env.__P8_FILE_PATH
 const __keyID = process.env.__KEY_ID
@@ -41,6 +41,8 @@ function launch() {
     res.send('hello world')
   })
 
+  app.post('/device_token', TokenStore.saveToken)
+  
   app.post('/send', async (req, res) => {
     log.debug(req.body)
 

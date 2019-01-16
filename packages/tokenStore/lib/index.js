@@ -100,11 +100,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: tokenStoreMiddleware */
+/*! exports provided: saveToken, lookupToken */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"tokenStoreMiddleware\", function() { return tokenStoreMiddleware; });\n// export type express.Request\n// export const tokenStoreMiddleware = (request: express.Request, response: express.Response, next: express.NextFunction) => {\n//     console.log(`### ${request.method} ${request.path}`);\n//     next();\n// }\n// export function tokenStoreMiddleware(request: express.Request, response: express.Response, next: express.NextFunction) {\nfunction tokenStoreMiddleware(request, response, next) {\n  console.log(`### ${request.method} ${request.path}`);\n  next();\n} // export function hoge(a: string) {\n//     console.log(a);\n// }\n// export function saveToken(request, response, next) {\n//     console.log(`### ${request.method} ${request.path}`);\n//     next();\n// }\n\n//# sourceURL=webpack://PushServer.TokenStore/./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"saveToken\", function() { return saveToken; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"lookupToken\", function() { return lookupToken; });\nfunction saveToken(request, response) {\n  console.log(`$$$ ${request.method} ${request.path}`);\n  response.sendStatus(200);\n}\nfunction lookupToken(request, response, next) {\n  console.log(`#### ${request.method} ${request.path}`); // request.params\u0010\n\n  request.headers['x-target-device-token'] = 'af05cea58ffb2fbb313568ad2bdc9c9170bf5217a360d01024647ae6c7e016b7';\n  next();\n}\n\n//# sourceURL=webpack://PushServer.TokenStore/./src/index.ts?");
 
 /***/ })
 

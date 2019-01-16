@@ -1,22 +1,15 @@
-import * as express from 'express';
+import * as express from 'express'
 
-// export type express.Request
+export function saveToken(request: express.Request, response: express.Response) {
 
-// export const tokenStoreMiddleware = (request: express.Request, response: express.Response, next: express.NextFunction) => {
-
-//     console.log(`### ${request.method} ${request.path}`);
-//     next();
-// }
-
-// export function tokenStoreMiddleware(request: express.Request, response: express.Response, next: express.NextFunction) {
-export function tokenStoreMiddleware(request: express.Request, response: express.Response, next: express.NextFunction) {
-
-    console.log(`### ${request.method} ${request.path}`);
-    next();
+    console.log(`$$$ ${request.method} ${request.path}`);
+    response.sendStatus(200)
 }
 
-// export function saveToken(request, response, next) {
+export function lookupToken(request: express.Request, response: express.Response, next: express.NextFunction) {
 
-//     console.log(`### ${request.method} ${request.path}`);
-//     next();
-// }
+    console.log(`#### ${request.method} ${request.path}`);
+    // request.params
+    request.headers['x-target-device-token'] = 'af05cea58ffb2fbb313568ad2bdc9c9170bf5217a360d01024647ae6c7e016b7';
+    next();
+}
