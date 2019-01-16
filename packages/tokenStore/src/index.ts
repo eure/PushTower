@@ -1,15 +1,22 @@
 import * as express from 'express'
+import * as storage from 'node-persist'
 
-export function saveToken(request: express.Request, response: express.Response) {
+
+export async function setup() {
+
+    await storage.init({dir: '/tmp/mydb.db'})
+}
+
+export async function putToken(request: express.Request, response: express.Response) {
 
     console.log(`$$$ ${request.method} ${request.path}`);
 
     const key = request.params['key']
     const deviceToken = request.params['device_token']
 
-    
+    await storage.setItem('name','yourname')
+    console.log(await storage.getItem('name')); // yourname
     response.sendStatus(200)
-
 }
 
 export function lookupToken(request: express.Request, response: express.Response, next: express.NextFunction) {
