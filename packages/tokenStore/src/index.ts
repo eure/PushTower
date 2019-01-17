@@ -25,14 +25,20 @@ export async function putToken(request: express.Request, response: express.Respo
 
 export async function lookupToken(request: express.Request, response: express.Response, next: express.NextFunction) {
 
-    const __deviceTokenLookupKeyHeader: string | undefined = process.env.__DEVICE_TOKEN_LOOKUP_KEY_HEADER
-    if (!__deviceTokenLookupKeyHeader) {
+    if (request.header('x-target-device-token')) {
+        // use deviceToken in header instead of looking up
         return next()
     }
 
-    let lookupKey: string | undefined = request.header(__deviceTokenLookupKeyHeader)
+    const __deviceTokenLookupKeyHeader = process.env.__DEVICE_TOKEN_LOOKUP_KEY_HEADER
+    if (!__deviceTokenLookupKeyHeader) {
+        console.log('environment variable __DEVICE_TOKEN_LOOKUP_KEY_HEADER not provided')
+        return next()
+    }
+
+    let lookupKey = request.header(__deviceTokenLookupKeyHeader)
     if (!lookupKey) {
-        console.log('lookup key not provided')
+        console.log('lookup key not provided in header')
         return next()
     }
 
