@@ -25,27 +25,21 @@ export async function putToken(request: express.Request, response: express.Respo
 
 export async function lookupToken(request: express.Request, response: express.Response, next: express.NextFunction) {
 
-    const __deviceTokenLookupKeyParam = process.env.__DEVICE_TOKEN_LOOKUP_KEY_PARAM
-    const __deviceTokenLookupKeyHeader = process.env.__DEVICE_TOKEN_LOOKUP_KEY_HEADER
-
-    let lookupKey = null
-    if (__deviceTokenLookupKeyHeader) {
-        lookupKey = request.header(__deviceTokenLookupKeyHeader)
+    const __deviceTokenLookupKeyHeader: string | undefined = process.env.__DEVICE_TOKEN_LOOKUP_KEY_HEADER
+    if (!__deviceTokenLookupKeyHeader) {
+        return next()
     }
 
-    if (!lookupKey && __deviceTokenLookupKeyParam) {
-        lookupKey = request.params[__deviceTokenLookupKeyParam]
-    }
-
+    let lookupKey: string | undefined = request.header(__deviceTokenLookupKeyHeader)
     if (!lookupKey) {
         console.log('lookup key not provided')
-        next()
+        return next()
     }
 
     const deviceToken = await storage.getItem(lookupKey)
     if (!deviceToken) {
         console.log(`device token not found for key: ${lookupKey}`)
-        next()
+        return next()
     }
 
     console.log(`looked up device_token: ${deviceToken} by key: ${lookupKey}`)
