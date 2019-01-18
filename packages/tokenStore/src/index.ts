@@ -30,15 +30,9 @@ export async function lookupToken(request: express.Request, response: express.Re
         return next()
     }
 
-    const __deviceTokenLookupKeyHeader = process.env.__DEVICE_TOKEN_LOOKUP_KEY_HEADER
-    if (!__deviceTokenLookupKeyHeader) {
-        console.log('environment variable __DEVICE_TOKEN_LOOKUP_KEY_HEADER not provided')
-        return next()
-    }
-
-    let lookupKey = request.header(__deviceTokenLookupKeyHeader)
+    const lookupKey = request.header('x-target-device-token-lookup-key')
     if (!lookupKey) {
-        console.log('lookup key not provided in header')
+        console.log('neither x-target-device-token nor x-target-device-token-lookup-key was provided in header')
         return next()
     }
 
