@@ -21,16 +21,17 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/kenjitayama/PushTowerClient'
+  s.homepage         = 'https://github.com/muukii/PushTower/ios'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'kenjitayama' => 'kenji.tayama@gmail.com' }
-  s.source           = { :git => 'https://github.com/kenjitayama/PushTowerClient.git', :tag => s.version.to_s }
+  # s.source           = { :git => 'https://github.com/kenjitayama/PushTowerClient.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/muukii/PushTower.git', :branch => 'storeDeviceToken' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'PushTowerClient/Classes/**/*'
+  s.source_files = 'ios/PushTowerClient/Classes/**/*'
   
   # s.resource_bundles = {
   #   'PushTowerClient' => ['PushTowerClient/Assets/*.png']
