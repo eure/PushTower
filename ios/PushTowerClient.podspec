@@ -23,7 +23,7 @@ TODO: Add long description of the pod here.
 
   s.homepage         = 'https://github.com/muukii/PushTower/ios'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'MIT', :file => 'ios/LICENSE' }
   s.author           = { 'kenjitayama' => 'kenji.tayama@gmail.com' }
   # s.source           = { :git => 'https://github.com/kenjitayama/PushTowerClient.git', :tag => s.version.to_s }
   s.source           = { :git => 'https://github.com/muukii/PushTower.git', :branch => 'storeDeviceToken' }
