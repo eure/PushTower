@@ -1,4 +1,4 @@
-# PushServer
+# PushTower web
 
 ## Development
 
@@ -11,6 +11,8 @@ lerna bootstrap
 ```
 
 ## Usage
+
+### Basic
 
 // TODO:
 
@@ -36,6 +38,40 @@ curl -X POST \
   http://localhost:9000/send \
   -H 'Content-Type: application/json' \
   -H 'X-target-device-token: <#TARGET DEVICE TOKEN#>' \
+  -H 'x-topic: <#TARGET APP BUNDLE ID#>' \
+  -d '{
+  "aps" : {
+    "badge" : 0,
+    "alert" : "Hello"
+  }
+}'
+```
+
+### Using device_token key-value store and lookup
+
+#### Storing device token
+
+```
+curl -X PUT \
+  http://localhost:9000/device_token \
+  -H 'Content-Type: application/json' \
+  -H 'x-topic: <#TARGET APP BUNDLE ID#>' \
+  -d '{
+  "key" : "John Appleseed's iPhone",
+  "device_token" : <#TARGET DEVICE TOKEN#>
+}'
+```
+
+This can be sent from an iOS app, if you install the [iOS library](../ios)
+
+
+#### Sending push notification
+
+```
+curl -X POST \
+  http://localhost:9000/send \
+  -H 'Content-Type: application/json' \
+  -H 'X-target-device-token-lookup-key: John Appleseed's iPhone' \
   -H 'x-topic: <#TARGET APP BUNDLE ID#>' \
   -d '{
   "aps" : {
