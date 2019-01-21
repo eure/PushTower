@@ -19,6 +19,7 @@ Value should be `http://pushTowerServerHost:port/device_token`.
 
 No need to modify code in your project. device token will be sent to this URL and will be stored in a key-value store using iOS device's name as the key.
 
+This function is enabled only if the `DEBUG` flag is set.
 
 ## Author
 
