@@ -1,0 +1,16 @@
+PODS:
+  - PushTowerClient (0.1.0)
+
+DEPENDENCIES:
+  - PushTowerClient (from `../`)
+
+EXTERNAL SOURCES:
+  PushTowerClient:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PushTowerClient: f48093e35b1f87f1a3a40d4e1a9bf3ad9fd08a78
+
+PODFILE CHECKSUM: 964356f868e4b7c6b9ca9758bf6d83d6b2dbdd76
+
+COCOAPODS: 1.5.3

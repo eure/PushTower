@@ -1,8 +1,8 @@
 import Express from 'express'
 import * as bodyParser from 'body-parser'
 import * as log from 'signale'
-
 import * as Core from '@pushservicejs/core'
+import * as TokenStore from '@pushservicejs/tokenstore'
 
 const port = 9000
 
@@ -10,8 +10,13 @@ console.log('⚾️', Core, require('@pushservicejs/core'))
 
 const app = Express()
 
-app.use(bodyParser.urlencoded({ extended: true }))
+TokenStore.setup()
+
+// app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 const __p8FilePath = process.env.__P8_FILE_PATH
 const __keyID = process.env.__KEY_ID
@@ -40,6 +45,9 @@ function launch() {
     res.send('hello world')
   })
 
+  app.put('/device_token', TokenStore.putToken)
+  
+  app.use('/send', TokenStore.lookupToken)
   app.post('/send', async (req, res) => {
     log.debug(req.body)
 
