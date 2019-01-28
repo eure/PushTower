@@ -58,6 +58,7 @@ function launch() {
     const payload = req.body
     const deviceToken = req.header('x-target-device-token')
     const topic = req.header('x-topic')
+    const isProduction = __isProduction || req.header('x-is-production') === "1"
 
     if (!deviceToken) {
       return
@@ -71,7 +72,7 @@ function launch() {
       keyID: __keyID,
       teamID: __teamID,
       deviceToken: deviceToken,
-      isProduction: __isProduction,
+      isProduction: isProduction,
       payload: payload,
       topic: topic,
     }

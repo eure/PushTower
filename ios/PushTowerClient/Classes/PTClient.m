@@ -2,6 +2,12 @@
 #import <UIKit/UIApplication.h>
 #import <objc/runtime.h>
 
+#ifdef PUSHTOWER_PUT_TOKEN_URL
+#define __PUSHTOWER_PUT_TOKEN_URL_STRING(x) #x
+#define _PUSHTOWER_PUT_TOKEN_URL_STRING(x) __PUSHTOWER_PUT_TOKEN_URL_STRING(x)
+#define PUSHTOWER_PUT_TOKEN_URL_STRING @ _PUSHTOWER_PUT_TOKEN_URL_STRING(PUSHTOWER_PUT_TOKEN_URL)
+#endif
+
 @implementation PTClient
 
 static IMP didRegisterOriginalMethod = NULL;
@@ -9,7 +15,7 @@ static IMP didRegisterOriginalMethod = NULL;
 + (void)load {
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
-#ifdef DEBUG
+#ifdef PUSHTOWER_PUT_TOKEN_URL
         [PTClient setup];
 #endif
     }];
@@ -35,17 +41,23 @@ static IMP didRegisterOriginalMethod = NULL;
 }
 
 - (void)my_application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-#ifdef DEBUG
+#ifdef PUSHTOWER_PUT_TOKEN_URL
     if (didRegisterOriginalMethod) {
         void (*originalImp)(id, SEL, UIApplication *, NSData *) = didRegisterOriginalMethod;
         originalImp(self, @selector(application:didRegisterForRemoteNotificationsWithDeviceToken:), application, deviceToken);
     }
 
     // URL
-    NSString *putDeviceTokenURLString = [[[NSProcessInfo processInfo]environment]objectForKey:@"PUSHTOWER_PUT_TOKEN_URL"];
+#ifdef PUSHTOWER_PUT_TOKEN_URL_IS_HTTPS
+    NSString *putDeviceTokenURLSchemeString = @"https";
+#else
+    NSString *putDeviceTokenURLSchemeString = @"http";
+#endif
+    NSString *putDeviceTokenURLString = [NSString stringWithFormat:@"%@://%@", putDeviceTokenURLSchemeString, PUSHTOWER_PUT_TOKEN_URL_STRING];
+
     NSURL *putDeviceTokenURL = [NSURL URLWithString:putDeviceTokenURLString];
     if (!putDeviceTokenURL) {
-        NSLog(@"URL from environment variable PUSHTOWER_PUT_TOKEN_URL is invalid: %@", putDeviceTokenURLString);
+        NSLog(@"URL from preprocessor macro PUSHTOWER_PUT_TOKEN_URL, PUSHTOWER_PUT_TOKEN_URL_IS_HTTPS is invalid: %@", putDeviceTokenURLString);
         return;
     }
 
