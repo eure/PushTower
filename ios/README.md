@@ -6,16 +6,18 @@
 it, add the following lines to your Podfile:	
 
  ```ruby
+$pushtower_client_configurations = ['debugger-staging', 'debugger-production']
+ 
 # for installing
 pod 'PushTowerClient',
         :podspec => 'https://raw.githubusercontent.com/muukii/PushTower/ios/PushTowerClient.podspec',
-        configuration: ['debugger-staging', 'debugger-production'] # <= exapmle of installing only for debug builds
+        configuration: $pushtower_client_configurations # <= exapmle of installing only for debug builds
 
 # for providing PushTower's URL
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      if config.name != 'appstore'
+      if $pushtower_client_configurations.include? config.name
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
           '$(inherited)',
           'PUSHTOWER_PUT_TOKEN_URL=10.100.11.161:9000/device_token' # PushTower's URL. Do not include http:// or https://
