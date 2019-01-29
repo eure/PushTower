@@ -47,7 +47,7 @@ curl -X POST \
 }'
 ```
 
-In addition to `export __IS_PRODUCTION=true` you can set production mode by the following HTTP header
+In addition to `export __IS_PRODUCTION=true` you can set production mode by the following HTTP header
 
 ```
   -H 'x-is-production: 1' \
