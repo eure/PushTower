@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/muukii/PushTower/ios'
+  s.homepage         = 'https://github.com/eure/PushTower/tree/develop/web'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'ios/LICENSE' }
   s.author           = { 'kenjitayama' => 'kenji.tayama@gmail.com' }
-  s.source           = { :git => 'https://github.com/muukii/PushTower.git', :branch => 'develop' }
+  s.source           = { :git => 'https://github.com/eure/PushTower.git', :branch => 'develop' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'

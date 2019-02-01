@@ -10,7 +10,7 @@ $pushtower_client_configurations = ['debugger-staging', 'debugger-production']
  
 # for installing
 pod 'PushTowerClient',
-        :podspec => 'https://raw.githubusercontent.com/muukii/PushTower/ios/PushTowerClient.podspec',
+        :podspec => 'https://raw.githubusercontent.com/eure/PushTower/develop/ios/PushTowerClient.podspec',
         configuration: $pushtower_client_configurations # <= exapmle of installing only for debug builds
 
 # for providing PushTower's URL
