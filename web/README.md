@@ -61,7 +61,6 @@ In addition to `export __IS_PRODUCTION=true` you can set production mode by the 
 curl -X PUT \
   http://localhost:9000/device_token \
   -H 'Content-Type: application/json' \
-  -H 'x-topic: <#TARGET APP BUNDLE ID#>' \
   -d '{
   "key" : "John Appleseed's iPhone",
   "device_token" : <#TARGET DEVICE TOKEN#>
