@@ -14,8 +14,6 @@ lerna bootstrap
 
 ### Basic
 
-// TODO:
-
 Before launching server, we need to set env-var.
 
 ```
