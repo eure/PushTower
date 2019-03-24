@@ -7,6 +7,7 @@
     * Desktop(Application)
 
 ```
+npm install -g lerna
 lerna bootstrap
 ```
 
