@@ -1,0 +1,6 @@
+use_frameworks!
+target 'PushTowerClient_Tests' do
+  pod 'PushTowerClient', :path => '../'
+  
+  
+end

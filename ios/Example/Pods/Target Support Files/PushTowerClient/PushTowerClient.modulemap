@@ -1,0 +1,6 @@
+framework module PushTowerClient {
+  umbrella header "PushTowerClient-umbrella.h"
+
+  export *
+  module * { export * }
+}

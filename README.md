@@ -1,7 +1,5 @@
-# PushServer
+# PushTower
 
-## Development
+For web server and web client, see [web](./web).
 
-```
-lerna bootstrap
-```
+For ios library, see [ios](./ios).
